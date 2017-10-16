@@ -5,7 +5,7 @@ Steps to execute test cases written for HAL.next:
 1. Add remote and checkout branch `hal.next`  
     ```bash
     git remote add hpehl git@github.com:hpehl/testsuite.git
-    git fetch
+    git fetch hpehl
     git checkout hal.next 
     ```
 
