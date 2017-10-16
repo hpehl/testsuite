@@ -9,8 +9,7 @@ Steps to execute test cases written for HAL.next:
     git checkout hal.next 
     ```
 
-1. Start WildFly w/ HAL.next  
-The easiest way is to use the docker image [`hal-console`](https://hub.docker.com/r/hpehl/hal-console/):
+1. Start WildFly w/ HAL.next,  The easiest way is to use the docker image [`hal-console`](https://hub.docker.com/r/hpehl/hal-console/):  
     ```bash
     docker run -p 9990:9990 \
                -it hpehl/hal-console \
@@ -18,13 +17,13 @@ The easiest way is to use the docker image [`hal-console`](https://hub.docker.co
                -b 0.0.0.0 -bmanagement 0.0.0.0
     ```
     
-1. Unsecure Management Interface  
+1. Unsecure Management Interface. Use `admin:admin` to login for the first time.   
     ```
     /core-service=management/management-interface=http-interface:undefine-attribute(name=security-realm)
     :reload
     ```
       
-1. Run single test case e.g. `org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase`  
+1. Run a single test case e.g. `org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase`  
     ```bash
     mvn test -Pstandalone,basic \
              -Djboss.dist=<WILDFLY_HOME> \
