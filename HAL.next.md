@@ -25,5 +25,7 @@ Steps to execute test cases written for HAL.next:
 
 1. Define `WILDFLY_HOME` and `FIREFOX_BINARY` and run a single test case e.g. `org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase`  
     ```bash
+    export WILDFLY_HOME=...
+    export FIREFOX_BINARY=...
     ./run-single.sh org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase
     ```
