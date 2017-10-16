@@ -1,7 +1,24 @@
 #!/bin/sh
+
+#
+# Env args:
+# - WILDFLY_HOME: WildFly base directory
+# - FIREFOX_BINARY: Path to the Firefox binary
+#
+
+if [ "${WILDFLY_HOME}x" == "x" ] ; then
+   echo "Please set WILDFLY_HOME!"
+   exit 1
+fi
+
+if [ "${FIREFOX_BINARY}x" == "x" ] ; then
+   echo "Please set FIREFOX_BINARY!"
+   exit 1
+fi
+
 mvn test -Pstandalone,basic \
-         -Djboss.dist=/Users/hpehl/dev/jboss/wildfly/wildfly/build/target/wildfly-11.0.0.Final-SNAPSHOT \
-         -Darq.extension.webdriver.firefox_binary=/Applications/Firefox\ 31.2.0.app/Contents/MacOS/firefox \
+         -Djboss.dist=${WILDFLY_HOME} \
+         -Darq.extension.webdriver.firefox_binary="${FIREFOX_BINARY}" \
          -Dtake.screenshot.after.each.test=true \
          -Dfindbugs.skip -Dcheckstyle.skip \
          -Dtest=$1

@@ -22,12 +22,8 @@ Steps to execute test cases written for HAL.next:
     /core-service=management/management-interface=http-interface:undefine-attribute(name=security-realm)
     :reload
     ```
-      
-1. Run a single test case e.g. `org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase`  
+
+1. Define `WILDFLY_HOME` and `FIREFOX_BINARY` and run a single test case e.g. `org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase`  
     ```bash
-    mvn test -Pstandalone,basic \
-             -Djboss.dist=<WILDFLY_HOME> \
-             -Darq.extension.webdriver.firefox_binary=<FIREFOX_BINARY> \
-             -Dfindbugs.skip -Dcheckstyle.skip \
-             -Dtest=org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase
+    ./run-single.sh org.jboss.hal.testsuite.test.configuration.ConfigurationTestCase
     ```
