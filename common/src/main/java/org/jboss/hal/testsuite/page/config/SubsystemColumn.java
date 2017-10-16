@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.apache.commons.lang.StringUtils.substringBetween;
 import static org.jboss.arquillian.graphene.Graphene.waitGui;
 
 @Location("#configuration;path=configuration~subsystems")
@@ -27,8 +28,8 @@ public class SubsystemColumn {
         }
     }
 
-    public WebElement getHeader() {
-        return header;
+    public String getSubsystemCount() {
+        return substringBetween(header.getText(), "(", ")");
     }
 
     public WebElement getFilter() {

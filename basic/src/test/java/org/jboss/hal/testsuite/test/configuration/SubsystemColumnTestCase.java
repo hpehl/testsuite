@@ -19,7 +19,6 @@ import org.wildfly.extras.creaper.core.online.OnlineManagementClient;
 import org.wildfly.extras.creaper.core.online.operations.Address;
 import org.wildfly.extras.creaper.core.online.operations.Operations;
 
-import static org.apache.commons.lang.StringUtils.substringBetween;
 import static org.jboss.arquillian.graphene.Graphene.goTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -31,7 +30,7 @@ public class SubsystemColumnTestCase {
     private static final OnlineManagementClient client = ManagementClientProvider.createOnlineManagementClient();
     private static final Operations operations = new Operations(client);
     private static final String FILTER_SOME = "io";
-    private static final String FILTER_NONE = "gibtsdochgarnet";
+    private static final String FILTER_NONE = "wtf";
 
     @Drone private WebDriver browser;
     @Page private SubsystemColumn page;
@@ -49,7 +48,7 @@ public class SubsystemColumnTestCase {
     @Test
     public void numberOfSubsystems() throws Exception {
         String expected = String.valueOf(subsystems.size());
-        String actual = substringBetween(page.getHeader().getText(), "(", ")");
+        String actual = page.getSubsystemCount();
         assertEquals(expected, actual);
     }
 
@@ -59,7 +58,7 @@ public class SubsystemColumnTestCase {
 
         long count = subsystems.stream().filter(name -> name.contains(FILTER_SOME)).count();
         String expected = String.format("%d / %d", count, subsystems.size());
-        String actual = substringBetween(page.getHeader().getText(), "(", ")");
+        String actual = page.getSubsystemCount();
         assertEquals(expected, actual);
     }
 
@@ -68,7 +67,7 @@ public class SubsystemColumnTestCase {
         page.getFilter().sendKeys(FILTER_NONE);
 
         String expected = String.format("0 / %d", subsystems.size());
-        String actual = substringBetween(page.getHeader().getText(), "(", ")");
+        String actual = page.getSubsystemCount();
         assertEquals(expected, actual);
         assertNotNull(page.getEmpty());
     }
