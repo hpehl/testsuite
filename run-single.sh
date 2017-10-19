@@ -16,9 +16,12 @@ if [ "${FIREFOX_BINARY}x" == "x" ] ; then
    exit 1
 fi
 
+TEST_CLASS=$1
+shift
+
 mvn test -Pstandalone,basic \
          -Djboss.dist=${WILDFLY_HOME} \
          -Darq.extension.webdriver.firefox_binary="${FIREFOX_BINARY}" \
          -Dtake.screenshot.after.each.test=true \
          -Dfindbugs.skip -Dcheckstyle.skip \
-         -Dtest=$1
+         -Dtest=${TEST_CLASS} $@
